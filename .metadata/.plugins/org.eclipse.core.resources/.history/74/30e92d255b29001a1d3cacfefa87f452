@@ -1,0 +1,17 @@
+/*
+ * main.cpp
+ *
+ *  Created on: Dec 28, 2019
+ *      Author: John
+ */
+
+#include "stm32g071xx.h"
+
+int main()
+{
+	while(1)
+	{
+
+	}
+}
+

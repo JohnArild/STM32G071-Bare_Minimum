@@ -1,0 +1,17 @@
+12:42:42 **** Build of configuration Debug for project BlinkLED ****
+make -j8 all 
+arm-none-eabi-gcc -mcpu=cortex-m0plus -g3 -c -x assembler-with-cpp --specs=nano.specs -mfloat-abi=soft -mthumb -o "Startup/startup_stm32g071rbtx.o" "../Startup/startup_stm32g071rbtx.s"
+arm-none-eabi-g++ "../Src/main.cpp" -mcpu=cortex-m0plus -std=gnu++14 -g3 -DSTM32G071RBTx -DSTM32 -DSTM32G0 -DNUCLEO_G071RB -DDEBUG -c -I../Inc -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DSTM32G071RBTx -DSTM32 -DSTM32G0 -DNUCLEO_G071RB -DDEBUG -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DSTM32G071RBTx -DSTM32 -DSTM32G0 -DNUCLEO_G071RB -DDEBUG -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/sysmem.o"
+arm-none-eabi-g++ -o "BlinkLED.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\John\STM32CubeIDE\FreeRTOS-course\00-Geting-started\BlinkLED\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BlinkLED.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: BlinkLED.elf
+ 
+arm-none-eabi-size   BlinkLED.elf 
+arm-none-eabi-objdump -h -S  BlinkLED.elf  > "BlinkLED.list"
+   text	   data	    bss	    dec	    hex	filename
+    664	     16	   1568	   2248	    8c8	BlinkLED.elf
+Finished building: default.size.stdout
+ 
+Finished building: BlinkLED.list
+ 

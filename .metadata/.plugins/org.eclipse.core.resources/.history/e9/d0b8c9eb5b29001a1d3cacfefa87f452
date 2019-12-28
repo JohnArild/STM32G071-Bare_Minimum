@@ -1,0 +1,19 @@
+/*
+ * main.cpp
+ *
+ *  Created on: Dec 28, 2019
+ *      Author: John
+ */
+
+#include "stm32g071xx.h"
+
+int main()
+{
+	// Setup GPIO
+	RCC->IOPENR |= RCC_IOPENR_GPIOAEN; // Enable GPIO A
+	GPIOA->MODER |= GPIO_MODER_MODE5_0 // Set Pin 5 as Output
+	while(1)
+	{
+
+	}
+}

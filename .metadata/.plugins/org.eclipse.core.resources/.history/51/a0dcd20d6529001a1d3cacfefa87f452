@@ -1,0 +1,45 @@
+/*
+ * main.cpp
+ *
+ *  Created on: Dec 28, 2019
+ *      Author: John
+ */
+
+#include "stm32g071xx.h"
+
+void waitLoop(int loops); //Prototype for a simple delay loop
+
+int main()
+{
+	// init
+	RCC->APBENR2 |= RCC_APBENR2_SYSCFGEN;
+	//RCC->APBENR1 |= RCC_APBENR1_PWREN;
+	RCC->APBENR1 |= RCC_APBENR1_DBGEN;
+	// Setup GPIO
+	RCC->IOPENR |= RCC_IOPENR_GPIOAEN; // Enable GPIO A
+	GPIOA->MODER |= GPIO_MODER_MODE5_0; // Set GPIOA Pin 5 as Output
+	//GPIOA->OTYPER &= ~(GPIO_OTYPER_OT5_Msk); // Set GPIO Pin 5 Output type as push-pull
+	//GPIOA->OTYPER |= GPIO_OTYPER_OT5;
+	//GPIOA->OSPEEDR |= GPIO_OSPEEDR_OSPEED5_0; // Set GPIOA Pin 5 Output as Low Speed
+	//GPIOA->PUPDR &= ~(GPIO_PUPDR_PUPD5_Msk); // Set GPIOA Pin5 as no Pull-up/Pull-down
+	GPIOA->PUPDR |= GPIO_PUPDR_PUPD5_1;
+
+	while(1)
+	{
+		GPIOA->BSRR |= GPIO_BSRR_BS5; //Turn off PA5
+		waitLoop(0xFE);
+		GPIOA->BSRR |= GPIO_BSRR_BR5; //Turn on PA5
+		waitLoop(0xFE);
+	}
+}
+
+void waitLoop(int loops)
+{
+	for(int i = 0; i < loops; i++)
+	{
+		for(uint32_t j = 0; j < 0xFFF; j++)
+		{
+			;
+		}
+	}
+}
